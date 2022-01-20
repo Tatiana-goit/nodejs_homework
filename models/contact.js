@@ -17,6 +17,10 @@ const contactSchema = Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+    },
   },
   {
     versionKey: false,
@@ -24,23 +28,23 @@ const contactSchema = Schema(
     toJSON: {
       virtuals: true,
       transform: function (doc, ret) {
-        delete ret._id;
-        return ret;
+        delete ret._id
+        return ret
       },
     },
     toObject: { virtuals: true },
-  }
+  },
 )
 
 const contactJoiSchema = Joi.object({
   name: Joi.string().min(1).max(50).required(),
   email: Joi.string().email().required(),
   phone: Joi.string().required(),
-  favorite: Joi.boolean()
+  favorite: Joi.boolean(),
 })
 
 const updateFavoriteJoiSchema = Joi.object({
-  favorite: Joi.boolean().required()
+  favorite: Joi.boolean().required(),
 })
 
 const Contact = model('contact', contactSchema)
