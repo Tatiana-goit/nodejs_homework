@@ -31,9 +31,6 @@ const register = async (req, res) => {
   }
   await sendEmail(emailForVerification)
 
-
-
-  // console.log(emailForVerification)
   sendSuccessRes(res, { result })
 }
 
