@@ -7,9 +7,12 @@ const { SECRET_KEY } = process.env
 
 const login = async (req, res) => {
   const { email, password } = req.body
-  const user = await User.findOne({ email }, '_id email password')
+  const user = await User.findOne({ email }, '_id email password verify')
   if (!user || !bcrypt.compareSync(password, user.password)) {
     throw new BadRequest('Invalid email or password')
+  }
+  if (!user.verify) {
+    throw new BadRequest('email not verify')
   }
 
   const { _id } = user

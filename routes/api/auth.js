@@ -16,6 +16,10 @@ router.post(
   controllerWrapper(authController.register),
 )
 
+router.get('/verify/:verificationToken', controllerWrapper(authController.verifyToken))
+
+router.post('/verify', controllerWrapper(authController.verify))
+
 router.post(
   '/login',
   validation(userJoiSchema),
