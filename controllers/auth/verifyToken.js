@@ -14,4 +14,5 @@ const verifyToken = async (req, res) => {
   sendSuccessRes(res, 'Verification successful')
 }
 
+
 module.exports = verifyToken
