@@ -22,7 +22,6 @@ const authenticate = async (req, res, next) => {
       message: 'Not authorized',
     })
   }
-  
   try {
     const {_id} = jwt.verify(token, SECRET_KEY)
     const user = await User.findById(_id)
